@@ -26,6 +26,7 @@ class SonicPi {
     GUI_ID: number = 10;
     osc: any;
 
+
     constructor() {
         this.osc = new OSC({ 
             plugin: new OSC.DatagramPlugin({ send: { port: 4557 } }) 
@@ -53,7 +54,8 @@ class SonicPi {
         if(!editor) {
             return;
         }
-        return editor.document.getText();
+        const iconv = require('iconv-lite');
+        return iconv.encode(editor.document.getText(), "utf-8");
     }
 
     dispose() {

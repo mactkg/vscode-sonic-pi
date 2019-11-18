@@ -46,6 +46,7 @@
         "@types/mocha": "^2.2.42"
     },
     "dependencies": {
+        "iconv-lite": "^0.5.0",
         "osc-js": "^1.2.2"
     }
 }
