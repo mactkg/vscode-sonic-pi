@@ -1,6 +1,7 @@
 'use strict';
 import { window, commands, ExtensionContext } from 'vscode';
 import * as OSC from 'osc-js';
+import * as ICONV from 'iconv-lite';
 
 export function activate(context: ExtensionContext) {
     let sonicPi = new SonicPi();
@@ -49,13 +50,12 @@ class SonicPi {
         this.osc.send(msg); 
     }
 
-    public getCurrentCode(): String | undefined {
+    public getCurrentCode(): Buffer | undefined {
         let editor = window.activeTextEditor;
         if(!editor) {
             return;
         }
-        const iconv = require('iconv-lite');
-        return iconv.encode(editor.document.getText(), "utf-8");
+        return ICONV.encode(editor.document.getText(), "utf-8");
     }
 
     dispose() {
