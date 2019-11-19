@@ -29,15 +29,15 @@ class SonicPi {
 
 
     constructor() {
-        this.osc = new OSC({ 
-            plugin: new OSC.DatagramPlugin({ send: { port: 4557 } }) 
+        this.osc = new OSC({
+            plugin: new OSC.DatagramPlugin({ send: { port: 4557 } })
         });
         this.osc.open({ port: 4558 });
     }
 
     public runCode() {
         let code = this.getCurrentCode();
-        if(!code) {
+        if (!code) {
             return;
         }
 
@@ -47,18 +47,18 @@ class SonicPi {
 
     public stopAllCode() {
         const msg = new OSC.Message('/stop-all-jobs', this.GUI_ID);
-        this.osc.send(msg); 
+        this.osc.send(msg);
     }
 
     public getCurrentCode(): Buffer | undefined {
         let editor = window.activeTextEditor;
-        if(!editor) {
+        if (!editor) {
             return;
         }
         return ICONV.encode(editor.document.getText(), "utf-8");
     }
 
     dispose() {
-        this.osc.close()        
+        this.osc.close();
     }
 }
