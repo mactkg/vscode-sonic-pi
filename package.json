@@ -17,7 +17,7 @@
   "activationEvents": [
     "onCommand:extension.runCode",
     "onCommand:extension.stopAll",
-    "onCommand:extension.stopAll"
+    "onCommand:extension.restart"
   ],
   "main": "./out/extension",
   "contributes": {
