@@ -16,7 +16,8 @@
   ],
   "activationEvents": [
     "onCommand:extension.runCode",
-    "onCommand:extension.stopAll"
+    "onCommand:extension.stopAll",
+    "onCommand:extension.restart"
   ],
   "main": "./out/extension",
   "contributes": {
@@ -28,6 +29,10 @@
       {
         "command": "extension.stopAll",
         "title": "Stop All Sounds on Sonic Pi"
+      },
+      {
+        "command": "extension.restart",
+        "title": "Stop All Sounds and Run Code on Sonic Pi"
       }
     ]
   },
