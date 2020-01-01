@@ -1,5 +1,6 @@
 'use strict';
-import { window, commands, ExtensionContext } from 'vscode';
+import { window, commands, ExtensionContext, Range, TextEditor } from 'vscode';
+import { Config } from './config';
 import * as OSC from 'osc-js';
 import * as ICONV from 'iconv-lite';
 
@@ -26,9 +27,11 @@ class SonicPi {
 
     GUI_ID: number = 10;
     osc: any;
+    config: any;
 
 
     constructor() {
+        this.config = new Config();
         this.osc = new OSC({
             plugin: new OSC.DatagramPlugin({ send: { port: 4557 } })
         });
@@ -36,11 +39,15 @@ class SonicPi {
     }
 
     public runCode() {
-        let code = this.getCurrentCode();
+        let editor = window.activeTextEditor;
+        if (!editor) {
+            return;
+        }
+        let code = this.getCurrentCode(editor);
         if (!code) {
             return;
         }
-
+        this.codeFlash(editor);
         const msg = new OSC.Message('/run-code', this.GUI_ID, code);
         this.osc.send(msg);
     }
@@ -50,14 +57,23 @@ class SonicPi {
         this.osc.send(msg);
     }
 
-    public getCurrentCode(): Buffer | undefined {
-        let editor = window.activeTextEditor;
-        if (!editor) {
-            return;
-        }
+    public getCurrentCode(editor: TextEditor): Buffer | undefined {
         return ICONV.encode(editor.document.getText(), "utf-8");
     }
-
+    private codeFlash(editor: TextEditor) {
+        // TODO range designate
+        let startPos = editor.document.positionAt(0);
+        let endPos = editor.document.positionAt(editor.document.getText().length - 1);
+        let range = new Range(startPos, endPos);
+        const flashDecorationType = window.createTextEditorDecorationType({
+            backgroundColor: this.config.flashBackgroundColor(),
+            color: this.config.flashTextColor()
+        });
+        editor.setDecorations(flashDecorationType, [range]);
+        setTimeout(function () {
+            flashDecorationType.dispose();
+        }, 250);
+    }
     dispose() {
         this.osc.close();
     }
