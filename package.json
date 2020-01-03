@@ -2,6 +2,7 @@
   "name": "sonic-pi",
   "displayName": "sonic-pi",
   "description": "Play Sonic Pi with VSCode!",
+  "license": "MIT",
   "version": "0.0.2",
   "publisher": "mactkg",
   "repository": {
@@ -17,7 +18,7 @@
   "activationEvents": [
     "onCommand:extension.runCode",
     "onCommand:extension.stopAll",
-    "onLanguage:ruby"
+    "onCommand:extension.restart"
   ],
   "main": "./out/extension",
   "contributes": {
@@ -29,6 +30,10 @@
       {
         "command": "extension.stopAll",
         "title": "Stop All Sounds on Sonic Pi"
+      },
+      {
+        "command": "extension.restart",
+        "title": "Stop All Sounds and Run Code on Sonic Pi"
       }
     ]
   },

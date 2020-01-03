@@ -15,8 +15,16 @@ export function activate(context: ExtensionContext) {
         sonicPi.stopAllCode();
     });
 
+    let restartCmd = commands.registerCommand('extension.restart', () => {
+        sonicPi.stopAllCode();
+        setTimeout(() => {
+            sonicPi.runCode();
+        }, 500);
+    });
+
     context.subscriptions.push(runCodeCmd);
     context.subscriptions.push(stopAllCmd);
+    context.subscriptions.push(restartCmd);
     context.subscriptions.push(sonicPi);
 }
 
