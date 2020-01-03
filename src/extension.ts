@@ -61,7 +61,6 @@ class SonicPi {
         return ICONV.encode(editor.document.getText(), "utf-8");
     }
     private codeFlash(editor: TextEditor) {
-        // TODO range designate
         let startPos = editor.document.positionAt(0);
         let endPos = editor.document.positionAt(editor.document.getText().length - 1);
         let range = new Range(startPos, endPos);
