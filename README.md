@@ -19,6 +19,19 @@ You can play Sonic Pi from VSCode.
 2. Write some Code
 3. Open Command Parrete, and call "Run code on Sonic Pi"
 
+## Extension Settings
+
+You can add vscode's settings.json to your own settings.
+
+### config sample
+
+```json
+{
+    "sonicpi.flashBackgroundColor": "rgba(197,97,106,0.5)",
+    "sonicpi.flashTextColor": "rgba(236,239,244,0.5)",
+}
+```
+
 ## Known Issues
 
 - Can't display logs
