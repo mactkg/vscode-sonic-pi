@@ -4,6 +4,8 @@ All notable changes to the "sonic-pi" extension will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## [Unreleaced]
+
+## [0.1.0] - 2020-01-04
 ### Added
 - Restart command([#14](https://github.com/mactkg/vscode-sonic-pi/pull/14) by [yukulele](https://github.com/yukulele))
 
