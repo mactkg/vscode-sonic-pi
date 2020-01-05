@@ -55,7 +55,7 @@ class SonicPi {
         if (!code) {
             return;
         }
-        this.codeFlash(editor);
+        this.flashCode(editor);
         const msg = new OSC.Message('/run-code', this.GUI_ID, code);
         this.osc.send(msg);
     }
@@ -68,7 +68,7 @@ class SonicPi {
     public getCurrentCode(editor: TextEditor): Buffer | undefined {
         return ICONV.encode(editor.document.getText(), "utf-8");
     }
-    private codeFlash(editor: TextEditor) {
+    private flashCode(editor: TextEditor) {
         let startPos = editor.document.positionAt(0);
         let endPos = editor.document.positionAt(editor.document.getText().length - 1);
         let range = new Range(startPos, endPos);
