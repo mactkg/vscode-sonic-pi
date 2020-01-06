@@ -1,0 +1,24 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: mkdir build
+      - name: build package
+        uses: lannonbr/vsce-action@master
+        with:
+          args: package -o build/sonic-pi-${{ steps.extract_branch.outputs.branch }}.vsix
+      - name: archive artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: sonic-pi-${{ steps.extract_branch.outputs.branch }}
+          path: build
