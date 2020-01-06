@@ -5,6 +5,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleaced]
 
+## [0.2.0] - 2020-01-07
+### Added
+- Flash code like the Sonic Pi IDE when run code([#17](https://github.com/mactkg/vscode-sonic-pi/pull/17) by [mogimogitomato](https://github.com/mogimogitomato))
+
 ## [0.1.0] - 2020-01-04
 ### Added
 - Restart command([#14](https://github.com/mactkg/vscode-sonic-pi/pull/14) by [yukulele](https://github.com/yukulele))
