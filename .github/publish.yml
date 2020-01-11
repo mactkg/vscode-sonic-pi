@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  release:
+    types:
+      - prepublished
+      - published
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=version;]$(npm version patch)"
+        id: info
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: mkdir build
+      - name: build package
+        uses: lannonbr/vsce-action@master
+        with:
+          args: package -o build/sonic-pi-${{ steps.info.outputs.version }}.vsix
+      - name: archive artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: sonic-pi-${{ steps.info.outputs.version }}
+          path: build
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo {{ github.event.release.upload_url }}
