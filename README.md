@@ -39,8 +39,4 @@ You could add your own settings to vscode's settings.json.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
-### 0.2.0
-
-Initial release. 
+See [CHANGELOG.md](https://github.com/mactkg/vscode-sonic-pi/blob/master/CHANGELOG.md).
