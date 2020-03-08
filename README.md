@@ -21,7 +21,7 @@ You can play Sonic Pi from VSCode.
 
 ## Extension Settings
 
-You can add vscode's settings.json to your own settings.
+You could add your own settings to vscode's settings.json.
 
 ### config sample
 
@@ -41,6 +41,6 @@ You can add vscode's settings.json to your own settings.
 
 Users appreciate release notes as you update your extension.
 
-### 0.0.1
+### 0.2.0
 
 Initial release. 
